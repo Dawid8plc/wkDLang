@@ -1,20 +1,10 @@
 ﻿typedef struct IUnknown IUnknown;
 
 #include <Windows.h>
-#include <dbghelp.h>
-#include <psapi.h>
-#include <iostream>
-#include <TlHelp32.h>
 
 #include <filesystem>
 
-#include "include/MinHook.h"
-#include "Hooks.h"
 #include "DW2Lang.h"
-
-#pragma comment(lib,"user32.lib") 
-#pragma comment(lib,"libs\\libMinHook.x86.lib")
-#pragma comment(lib, "dbghelp.lib")
 
 bool isTextSection(const BYTE* arr, size_t size) {
     const char* textSection = ".text";

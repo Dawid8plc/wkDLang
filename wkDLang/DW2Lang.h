@@ -2,10 +2,8 @@ typedef struct IUnknown IUnknown;
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
-#include <algorithm>
 #include "UserString.h"
 
 using namespace std;

@@ -29,13 +29,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -150,7 +150,6 @@
   <ItemGroup>
     <ClInclude Include="DW2Lang.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Hooks.h" />
     <ClInclude Include="include\MinHook.h" />
     <ClInclude Include="libs\hacklib\ExeFile.h" />
     <ClInclude Include="libs\hacklib\Handles.h" />
@@ -162,7 +161,6 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="DW2Lang.cpp" />
-    <ClCompile Include="Hooks.cpp" />
     <ClCompile Include="libs\hacklib\ExeFile.cpp" />
     <ClCompile Include="libs\hacklib\ExeFile_WIN32.cpp" />
     <ClCompile Include="libs\hacklib\Memory_WIN32.cpp" />
