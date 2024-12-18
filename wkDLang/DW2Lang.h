@@ -1,5 +1,7 @@
 typedef struct IUnknown IUnknown;
 
+#include <Windows.h>
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -13,7 +15,7 @@ class DW2Lang
 {
 public:
 
-    const int SupportedFileFormatVer = 1;
+    const int SupportedFileFormatVer = 2;
 
     // Fields
     int FileFormatVer = 0;
@@ -64,9 +66,29 @@ public:
             throw std::runtime_error("DW2Lang file format version newer than supported");
         }
 
-        stream.read(reinterpret_cast<char*>(&CodePage), sizeof(CodePage));
+        if (FileFormatVer == 1)
+            stream.read(reinterpret_cast<char*>(&CodePage), sizeof(CodePage));
+        else
+            CodePage = 65001;
 
         Name = ReadString(stream);
+
+        if (FileFormatVer >= 2)
+        {
+            int UserStringsPos = 0;
+            stream.read(reinterpret_cast<char*>(&UserStringsPos), sizeof(UserStringsPos));
+
+            stream.seekg(UserStringsPos, std::ios::beg);
+
+            //int TBLCount = 0;
+            //stream.read(reinterpret_cast<char*>(&TBLCount), sizeof(TBLCount));
+
+            ////We can ignore loading the TBL for now, as we don't do anything with it in the game
+            //for (size_t i = 0; i < TBLCount; i++)
+            //{
+            //    stream.seekg(2, std::ios::cur);
+            //}
+        }
 
         int UserStringCount = 0;
         stream.read(reinterpret_cast<char*>(&UserStringCount), sizeof(UserStringCount));
@@ -77,6 +99,9 @@ public:
             us.Read(stream, FileFormatVer);
             UserStrings.push_back(us);
         }
+
+        if (FileFormatVer == 1)
+            CodePage = 65001;
     }
 
 private:
